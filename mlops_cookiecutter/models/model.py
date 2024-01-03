@@ -1,26 +1,24 @@
-import torch
+from torch import nn
 
-class MyNeuralNet(torch.nn.Module):
-    """ Basic neural network class. 
-    
-    Args:
-        in_features: number of input features
-        out_features: number of output features
-    
-    """
-    def __init__(self, in_features: int, out_features: int) -> None:
-        self.l1 = torch.nn.Linear(in_features, 500)
-        self.l2 = torch.nn.Linear(500, out_features)
-        self.r = torch.nn.ReLU()
-    
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """Forward pass of the model.
-        
-        Args:
-            x: input tensor expected to be of shape [N,in_features]
 
-        Returns:
-            Output tensor with shape [N,out_features]
+class MyAwesomeModel(nn.Module):
+    """My awesome model."""
 
-        """
-        return self.l2(self.r(self.l1(x)))
+    def __init__(self):
+        super(MyAwesomeModel, self).__init__()
+        self.conv_layer = nn.Sequential(
+            nn.Conv2d(1, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+        )
+        self.fc_layer = nn.Sequential(nn.Linear(64 * 7 * 7, 1000), nn.ReLU(), nn.Linear(1000, 10))
+
+    def forward(self, x):
+        x = x.unsqueeze(1)
+        x = self.conv_layer(x)
+        x = x.view(x.size(0), -1)  # Flatten the tensor
+        x = self.fc_layer(x)
+        return x

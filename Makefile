@@ -31,6 +31,8 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
+train:
+	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/train_model.py train
 
 #################################################################################
 # PROJECT RULES                                                                 #
