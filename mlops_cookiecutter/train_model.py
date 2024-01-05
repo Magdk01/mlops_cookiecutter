@@ -8,6 +8,8 @@ from tqdm import tqdm
 from data.mnist_dataloader import mnist
 from models.model import MyAwesomeModel
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 @click.group()
 def cli():
@@ -25,18 +27,18 @@ def train(lr, e):
 
     # TODO: Implement training loop here
     model = MyAwesomeModel()
-    model.to("cuda:0")
+    model.to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
 
     train_set, _ = mnist()
-    # train_set.to("cuda:0")
+    # train_set.to(device)
     loss_list = []
     for epoch in range(e):
         print(epoch)
         for batch in tqdm(train_set):
             inputs, labels = batch
-            inputs, labels = inputs.to("cuda:0"), labels.to("cuda:0")
+            inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             output = model(inputs)
 
@@ -63,7 +65,7 @@ def evaluate(model_checkpoint):
 
     # TODO: Implement evaluation logic here
     model = torch.load(model_checkpoint)
-    model.to("cuda:0")
+    model.to(device)
     model.eval()
     _, test_set = mnist(64)
     correct = 0
@@ -71,7 +73,7 @@ def evaluate(model_checkpoint):
     with torch.no_grad():
         for target in test_set:
             inputs, labels = target
-            inputs, labels = inputs.to("cuda:0"), labels.to("cuda:0")
+            inputs, labels = inputs.to(device), labels.to(device)
             outputs = model(inputs)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
