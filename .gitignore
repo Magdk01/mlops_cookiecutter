@@ -179,7 +179,7 @@ cython_debug/
 
 /data/
 reports/
-models/
+/models/
 /data
 /dtu_mlops
 lightning_logs/
