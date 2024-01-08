@@ -32,4 +32,4 @@ jobs:
         git config --global user.name "Magdk01"
         git add -A
         git commit -m "Apply ruff formatting" || true  # This will not fail if there's nothing to commit
-        git push
+        git push --set-upstream origin HEAD:${{ github.head_ref }}
