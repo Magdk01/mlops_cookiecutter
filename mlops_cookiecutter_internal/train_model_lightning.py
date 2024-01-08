@@ -1,14 +1,14 @@
 import click
 import matplotlib.pyplot as plt
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from pytorch_lightning import Trainer
 from tqdm import tqdm
 
 from mlops_cookiecutter_internal.data.mnist_dataloader import mnist
 from models.model_lightning import MyAwesomeModel
-from pytorch_lightning import Trainer
-import pytorch_lightning as pl
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

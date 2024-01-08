@@ -1,5 +1,6 @@
-from mlops_cookiecutter_internal.models.model_lightning import MyAwesomeModel
 from pytorch_lightning import Trainer
+
+from mlops_cookiecutter_internal.models.model_lightning import MyAwesomeModel
 
 
 def test_training_runs():

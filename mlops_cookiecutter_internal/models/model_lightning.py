@@ -1,5 +1,5 @@
-from torch import nn, optim
 from pytorch_lightning import LightningModule
+from torch import nn, optim
 
 from mlops_cookiecutter_internal.data.mnist_dataloader import mnist
 
@@ -18,9 +18,7 @@ class MyAwesomeModel(LightningModule):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
-        self.fc_layer = nn.Sequential(
-            nn.Linear(64 * 7 * 7, 1000), nn.ReLU(), nn.Linear(1000, 10)
-        )
+        self.fc_layer = nn.Sequential(nn.Linear(64 * 7 * 7, 1000), nn.ReLU(), nn.Linear(1000, 10))
 
         self.criterium = nn.CrossEntropyLoss()
 

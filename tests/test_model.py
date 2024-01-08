@@ -1,6 +1,7 @@
-import torch
-from mlops_cookiecutter_internal.models.model_lightning import MyAwesomeModel
 import pytest
+import torch
+
+from mlops_cookiecutter_internal.models.model_lightning import MyAwesomeModel
 
 
 def test_model_pass():
