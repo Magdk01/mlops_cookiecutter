@@ -25,17 +25,13 @@ def mnist(batch_size=64, num_work=1):
         torch.load("data/processed/train_images.pt"),
         torch.load("data/processed/train_target.pt"),
     )
-    train = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_work
-    )
+    train = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_work)
 
     test_dataset = CustomDataset(
         torch.load("data/processed/test_images.pt"),
         torch.load("data/processed/test_target.pt"),
     )
-    test = DataLoader(
-        test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_work
-    )
+    test = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_work)
     return train, test
 
 

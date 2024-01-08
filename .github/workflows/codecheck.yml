@@ -25,3 +25,9 @@ jobs:
         ruff format
         ruff check --fix
         ruff check
+
+    - name: Commit and push if ruff makes changes
+      run: |
+        git add -A
+        git commit -m "Apply ruff formatting" || true  # This will not fail if there's nothing to commit
+        git push
