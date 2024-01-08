@@ -47,7 +47,7 @@ def train(lr, e):
             optimizer.step()
         print(f"Epoch {epoch+1}, Loss: {loss.item()}")
         loss_list.append(loss.item())
-    torch.save(model.state_dict(), "models/trained_models/trained_model_v1.pt")
+    torch.save(model, "models/trained_models/trained_model_v1.pt")
 
     plt.plot(loss_list)
     plt.title("Loss per epoch")
@@ -78,7 +78,7 @@ def evaluate(model_checkpoint):
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-
+    
     accuracy = 100 * correct / total
     print(f"Accuracy: {accuracy:.2f}%")
 

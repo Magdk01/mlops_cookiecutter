@@ -177,7 +177,10 @@ cython_debug/
 #.idea/
 
 
-data/
+/data/
 reports/
 models/
 /data
+/dtu_mlops
+lightning_logs/
+/wandb

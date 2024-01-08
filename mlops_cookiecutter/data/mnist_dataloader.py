@@ -16,7 +16,7 @@ class CustomDataset(Dataset):
         return data_item, target_item
 
 
-def mnist(batch_size=64):
+def mnist(batch_size=64, num_work=1):
     """Return train and test dataloaders for MNIST."""
     # exchange with the corrupted mnist dataset
     # train = torch.randn(50000, 784)
@@ -25,13 +25,17 @@ def mnist(batch_size=64):
         torch.load("data/processed/train_images.pt"),
         torch.load("data/processed/train_target.pt"),
     )
-    train = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    train = DataLoader(
+        train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_work
+    )
 
     test_dataset = CustomDataset(
         torch.load("data/processed/test_images.pt"),
         torch.load("data/processed/test_target.pt"),
     )
-    test = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
+    test = DataLoader(
+        test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_work
+    )
     return train, test
 
 
