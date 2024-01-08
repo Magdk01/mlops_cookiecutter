@@ -3,8 +3,8 @@ import numpy as np
 import torch
 from sklearn.manifold import TSNE
 
-from mlops_cookiecutter.data.mnist_dataloader import mnist
-from mlops_cookiecutter.models.model import MyAwesomeModel
+from mlops_cookiecutter_internal.data.mnist_dataloader import mnist
+from mlops_cookiecutter_internal.models.model import MyAwesomeModel
 
 # import mlops_cookiecutter
 

@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mlops_cookiecutter"
+name = "mlops_cookiecutter_internal"
 version = "0.0.1"
 description = "Cookie Cutter template for Machine Learning Operations course at DTU"
 authors = [
@@ -15,7 +15,7 @@ requires-python = "~=3.10.12"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools]
-packages = ["mlops_cookiecutter"]
+packages = ["mlops_cookiecutter_internal"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

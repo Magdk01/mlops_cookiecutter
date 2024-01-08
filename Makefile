@@ -4,7 +4,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = mlops_cookiecutter
+PROJECT_NAME = mlops_cookiecutter_internal
 PYTHON_VERSION = 3.10.12
 PYTHON_INTERPRETER = python
 

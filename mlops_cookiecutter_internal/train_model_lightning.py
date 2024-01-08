@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
 
-from mlops_cookiecutter.data.mnist_dataloader import mnist
+from mlops_cookiecutter_internal.data.mnist_dataloader import mnist
 from models.model_lightning import MyAwesomeModel
 from pytorch_lightning import Trainer
 import pytorch_lightning as pl
