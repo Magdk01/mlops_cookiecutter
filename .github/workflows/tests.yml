@@ -12,7 +12,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         python-version: ["3.10.12"]
-        pytorch-version: ["2.1.0"]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -23,30 +22,24 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-        
+
+    - name: Cache Python dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - uses: iterative/setup-dvc@v1
     - name: Get data
       run: dvc pull
       env:
         GDRIVE_CREDENTIALS_DATA: ${{secrets.GDRIVE_KEY }}
 
-    - name: Get pip cache dir
-      id: pip-cache
-      run: |
-        echo "::set-output name=dir::$(pip cache dir)"
-
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: ${{ matrix.os }}-py${{ matrix.python-version }}-pt${{ matrix.pytorch-version }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ matrix.os }}-py${{ matrix.python-version }}-pt${{ matrix.pytorch-version }}-pip-
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install torch==${{ matrix.pytorch-version }}
         pip install .
 
     - name: Test with pytest
