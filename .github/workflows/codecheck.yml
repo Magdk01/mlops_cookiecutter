@@ -23,13 +23,6 @@ jobs:
       run: |
         pip install ruff
         ruff format
-        ruff check --fix
         ruff check
 
-    - name: Commit and push if ruff makes changes
-      run: |
-        git config --global user.email "magnusvinjebo@hotmail.com"
-        git config --global user.name "Magdk01"
-        git add -A
-        git commit -m "Apply ruff formatting" || true  # This will not fail if there's nothing to commit
-        git push --set-upstream origin HEAD:${{ github.head_ref }}
+    
