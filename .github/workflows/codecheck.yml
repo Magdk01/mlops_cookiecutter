@@ -28,6 +28,10 @@ jobs:
 
     - name: Commit and push if ruff makes changes
       run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
         git add -A
-        git commit -m "Apply ruff formatting" || true  # This will not fail if there's nothing to commit
-        git push
+        git commit -m "Apply ruff formatting" -a || true  # This will not fail if there's nothing to commit
+        git push --set-upstream origin HEAD:${{ github.head_ref }} --force
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
