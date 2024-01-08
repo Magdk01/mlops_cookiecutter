@@ -1,5 +1,6 @@
 from torch.utils.data import DataLoader, Dataset
-from mlops_cookiecutter.data.mnist_dataloader import mnistimport torch
+from mlops_cookiecutter.data.mnist_dataloader import mnist
+import torch
 import pytest
 
 
