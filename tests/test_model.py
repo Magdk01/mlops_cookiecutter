@@ -1,5 +1,5 @@
 import torch
-from mlops_cookiecutter import MyAwesomeModel
+from mlops_cookiecutter.models.model_lightning import MyAwesomeModel
 import pytest
 
 
