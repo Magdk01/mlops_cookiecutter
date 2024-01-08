@@ -24,5 +24,3 @@ jobs:
         pip install ruff
         ruff format
         ruff check
-
-    
